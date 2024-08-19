@@ -3,9 +3,8 @@
 # About
 This backend is :
 - compatible with the classic iOS YouTube app and the App Store app (1.3+ has limited support atm).
-- easy to host.
--  TBA
--  TBA
+- easy to host. (compatible with free PHP hosting providers like 000webhost, awardspace)
+- made to use YouTube API V3 for video feeds and Invidious for playback
   
 # Setup requierements 
 You need to have :
