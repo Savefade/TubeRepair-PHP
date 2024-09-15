@@ -1,0 +1,46 @@
+RewriteEngine On
+RewriteBase /
+
+#login
+RewriteRule ^youtube/accounts/applelogin1$ login/GuestLogin.php?login=1 [L]
+RewriteRule ^youtube/accounts/applelogin2$ login/GuestLogin.php?login=2 [L]
+RewriteRule ^youtube/accounts/registerDevice$ login/GuestLogin.php?login=3 [L]
+
+#feeds
+RewriteRule ^feeds/api/standardfeeds/most_viewed$ feeds/Classic/Featured.php?region=US [L]
+RewriteRule ^feeds/api/standardfeeds/([\w-]+)/most_viewed$ feeds/Classic/Featured.php?region=$1 [L]
+RewriteRule ^feeds/api/standardfeeds/([\w-]+)/recently_featured$ feeds/Classic/Featured.php?region=$1 [L]
+RewriteRule ^feeds/api/standardfeeds/([\w-]+)/top_rated$ feeds/Classic/Featured.php?region=$1 [L]
+RewriteRule ^feeds/api/standardfeeds/recently_featured$ feeds/Classic/Featured.php?region=$1 [L]
+RewriteRule ^feeds/api/standardfeeds/([\w-]+)/most_popular$ feeds/AppStore/ASFeatured.php?region=$1 [L]
+RewriteRule ^feeds/api/standardfeeds/most_popular$ feeds/AppStore/ASFeatured.php?region=us [L]
+RewriteRule ^feeds/player/videos/([\w-]+)$ feeds/Shared/GetVideoFeed.php?id=$1 [L]
+RewriteRule ^feeds/api/videos/([\w-]+)$ feeds/Shared/GetVideoFeed.php?id=$1 [L]
+RewriteRule ^feeds/api/videos/([\w-]+)/related$ feeds/Classic/GetRelatedVideos.php?title=$1 [L]
+
+#categories
+RewriteRule ^schemas/2007/categories.cat$ Categories.php [L]
+RewriteRule ^feeds/api/standardfeeds/most_popular_([\w-]+)$ feeds/AppStore/ASVideoCategory.php?category=$1&region=us [L]
+RewriteRule ^feeds/api/standardfeeds/([\w-]+)/most_popular_([\w-]+)$ feeds/AppStore/ASVideoCategory.php?category=$2&region=$1 [L]
+
+#search
+RewriteRule ^feeds/api/videos$ feeds/Shared/Search.php [L]
+RewriteRule ^feeds/api/videos/$ feeds/Shared/Search.php [L]
+RewriteRule ^feeds/api/channels$ feeds/AppStore/ASChannelSearch.php [L]
+RewriteRule ^feeds/mobile/videos$ feeds/WP/WPsearch.php [L]
+
+#channels
+RewriteRule ^feeds/api/channels/([\w-]+)$ feeds/AppStore/ASGetChannelInfo.php?channelId=$1 [L]
+RewriteRule ^feeds/api/users/([\w-]+)/uploads$ feeds/Classic/GetChannelVideos.php?username=$1 [L]
+RewriteRule ^feeds/api/events$ feeds/AppStore/GetChannelActivities.php?username= [L]
+
+#playlists
+RewriteRule ^feeds/api/users/([\w-]+)/playlists$ feeds/AppStore/ASGetPlaylists.php?channelId=$1 [L]
+RewriteRule ^feeds/api/playlists/([\w-]+)$ feeds/AppStore/ASGetPlaylistVideos.php?playlistId=$1 [L]
+
+#comments
+RewriteRule ^feeds/api/videos/(.+)/comments$ feeds/AppStore/ASGetComments.php?videoId=$1 [L]
+
+#TEST
+RewriteRule ^o/oauth2/programmatic_auth$ login/OAuth/programmatic_auth.php [L]
+# RewriteRule ^(.+)$ login/OAuth/handle_req.php [L]
